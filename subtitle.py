@@ -3,10 +3,14 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 subTitleSet = set([])
+articleIndex = 0
 for root, dirs, files in os.walk("/home/wiloon/workspace/my-projects/wiloon.com/content/post"):
     logging.debug("file list size: " + str(len(files)))
     for name in files:
         fullName = os.path.join(root, name)
+        logging.debug("index: " + str(articleIndex))
+        articleIndex = articleIndex + 1
+
         logging.debug("path: " + fullName)
         lines = []
         lineIndex = 0
@@ -38,6 +42,3 @@ for root, dirs, files in os.walk("/home/wiloon/workspace/my-projects/wiloon.com/
                 content = ''.join(lines)
                 m.write(content)
                 logging.debug('insert title')
-
-        # input("next...")
-        # os._exit(0)
