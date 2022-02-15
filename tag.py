@@ -23,22 +23,25 @@ for root, dirs, files in os.walk("/home/wiloon/workspace/my-projects/wiloon.com/
             for line in f:
                 lines.append(line)
         index = 0
+        titleHit = False
         for line in lines:
             if line.startswith('---') and lineIndexFlag < 2:
                 articleStartIndex = index
                 lineIndexFlag = lineIndexFlag + 1
             # title
-            if line.startswith('title:'):
+            if line.startswith('title:') and not titleHit:
                 titleList = line.split('title:')
                 title = titleList[1].strip()
+                titleHit = True
                 logging.debug('title: ' + title)
 
             # subtitle
-            if line.startswith('#'):
-                strList = line.split('#')
+            if line.startswith('##'):
+                strList = line.split('##')
                 for item in strList:
-                    if item != '#':
+                    if item != '##':
                         subTitleSet.add(item.strip())
+                        logging.debug('subtitle:' + item.strip())
 
             # categories
             if line.startswith('categories:'):
@@ -53,7 +56,7 @@ for root, dirs, files in os.walk("/home/wiloon/workspace/my-projects/wiloon.com/
         if title not in subTitleSet:
             lines.insert(articleStartIndex + 1, '## {}\n'.format(title))
             changed = 1
-            logging.debug('insert subtitle')
+            logging.debug('insert subtitle'+title)
 
         if categoriesExist == 0:
             lines.insert(articleStartIndex, 'categories:\n')
