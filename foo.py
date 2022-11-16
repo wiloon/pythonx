@@ -1,3 +1,9 @@
+import sys
+from netaddr import IPNetwork
+from path0.foo import fun0
+
+import logging
+
 print("Hello, World!")
 name = "hello world"
 print(name.title())
@@ -19,10 +25,6 @@ print(magician)
 for value in range(1, 5):
     print(value)
 
-import sys
-from netaddr import IPNetwork
-from path0.foo import fun0
-
 # print
 msg = "hello world"
 print(msg)
@@ -39,6 +41,7 @@ foo.field0 = "value0"
 
 print(foo)
 print(foo.field0)
+
 
 
 # class func
@@ -99,6 +102,7 @@ dict0.update({'key0': 'value000'})
 dict0.update({'key3': 'value3'})
 print(dict0)
 
+
 # exception
 def func1():
     raise Exception("--func1 exception--")
@@ -129,7 +133,7 @@ def exception1():
         traceback.print_tb(exc_traceback_obj)
 
 
-exception1()
+# exception1()
 
 # list
 list0 = ['str']
@@ -175,3 +179,20 @@ print("------")
 for num in range(-10, 10):  # 迭代 10 到 20 之间的数字
     print(num)
     print(repr(ip_network[num]))
+
+print("------")
+foo = 'foo-%s' % 'bar'
+print(foo)
+
+print("------")
+# 列表生成式
+print([i for i in range(1, 11)])
+print([i*2 for i in range(1, 11)])
+print([i*i for i in range(1, 11)])
+print([str(i) for i in range(1, 11)])
+print([i for i in range(1, 11) if i % 2 == 0])
+
+
+print("---")
+
+logging.info("info0")
