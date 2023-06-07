@@ -4,7 +4,9 @@ from path0.foo import fun0
 
 import logging
 
-print("Hello, World!")
+if __name__ == '__main__':
+    print("Hello, World!")
+
 name = "hello world"
 print(name.title())
 print(name.upper())
